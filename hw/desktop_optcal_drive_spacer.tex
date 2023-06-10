@@ -1,0 +1,38 @@
+\documentclass{standalone}
+
+%\input{common.tex}
+\usepackage{tikz}
+\usetikzlibrary{calc,intersections,through,backgrounds}
+\tikzset{
+  cut/.style={draw=red,line width=0.1mm},
+  mark/.style={draw=green,line width=0.1mm},
+  ignore/.style={draw=blue,line width=0.1mm},
+}
+
+\begin{document}
+\noindent\begin{tikzpicture}[node distance=1cm]
+  \coordinate (origin) at (0,0);
+  \foreach \height/\width in {23.5mm/110mm} {
+    % \path let in node[rectangle,draw=black,line width=0.1mm,minimum height = \height, minimum width=\width] (outline) at (\width / 2, -\height / 2) {};
+    \coordinate (se) at (\width, -\height);
+    \coordinate (sw) at (0, -\height);
+    \coordinate (nw) at (0, 0);
+    \coordinate (ne) at (\width, 0);
+    \draw[cut] (ne) -- (nw);
+    \draw[cut] (nw) -- (sw);
+    \draw[cut] (sw) -- (se);
+    \draw[cut] (se) -- (ne);
+
+    \foreach \xoffset/\yoffset in {79mm/-11.5mm} {
+      % led holes
+      \path let in coordinate (hole_origin) at (13mm, -\height + 6mm - \yoffset);
+      \foreach \xindex in {0, 1} {
+        \foreach \yindex in {0, 1} {
+          \path let \p1=(hole_origin) in coordinate (hole_position) at (\x1 + \xoffset * \xindex, \y1 + \yoffset * \yindex) {};
+          \draw[cut] (hole_position) circle (1.5mm);
+        }
+      }
+    }
+  }
+\end{tikzpicture}
+\end{document}
