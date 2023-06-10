@@ -12,15 +12,36 @@
 \begin{document}
 \noindent\begin{tikzpicture}[node distance=1cm]
   \coordinate (origin) at (0,0);
-  \foreach \height/\width in {23.5mm/110mm} {
+  \foreach \height/\width/\toothheight in {23.5mm/110mm/2mm} {
     % \path let in node[rectangle,draw=black,line width=0.1mm,minimum height = \height, minimum width=\width] (outline) at (\width / 2, -\height / 2) {};
     \coordinate (se) at (\width, -\height);
     \coordinate (sw) at (0, -\height);
-    \coordinate (nw) at (0, 0);
-    \coordinate (ne) at (\width, 0);
+    \coordinate (nw) at (0, -\toothheight);
+    \coordinate (ne) at (\width, -\toothheight);
+
+    \coordinate (tooth1_nw) at (25mm, -\height);
+    \coordinate (tooth1_sw) at (25mm, -\height - \toothheight);
+    \coordinate (tooth1_se) at (55mm, -\height - \toothheight);
+    \coordinate (tooth1_ne) at (55mm, -\height);
+
+    \coordinate (tooth2_nw) at (65mm, -\height);
+    \coordinate (tooth2_sw) at (65mm, -\height - \toothheight);
+    \coordinate (tooth2_se) at (89mm, -\height - \toothheight);
+    \coordinate (tooth2_ne) at (89mm, -\height);
+    
     \draw[cut] (ne) -- (nw);
     \draw[cut] (nw) -- (sw);
-    \draw[cut] (sw) -- (se);
+    \draw[cut] (sw) -- (tooth1_nw);
+    \draw[cut] (tooth1_nw) -- (tooth1_sw);
+    \draw[cut] (tooth1_sw) -- (tooth1_se);
+    \draw[cut] (tooth1_se) -- (tooth1_ne);
+    \draw[cut] (tooth1_ne) -- (tooth2_nw);
+
+    \draw[cut] (tooth2_nw) -- (tooth2_sw);
+    \draw[cut] (tooth2_sw) -- (tooth2_se);
+    \draw[cut] (tooth2_se) -- (tooth2_ne);
+    \draw[cut] (tooth2_ne) -- (se);
+
     \draw[cut] (se) -- (ne);
 
     \foreach \xoffset/\yoffset in {79mm/-11.5mm} {
