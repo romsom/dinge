@@ -37,11 +37,24 @@
         %\draw[cut] (fancenter) circle (0.55 * \width); % TODO!
 
         \path let \p1=(fancenter) in coordinate (fan_inner_ne) at (\x1 + \width / 2 - \gluewidth / 2, \y1 + \width / 2 - \gluewidth / 2);
-        \path let \p1=(fancenter) in coordinate (fan_inner_se) at (\x1 + \width / 2 - \gluewidth / 2, \y1 - \width / 2 + \gluewidth / 2);
+        \path let \p1=(fancenter) in coordinate (fan_inner_nne) at (\x1 + \gluewidth / 2, \y1 + \width / 2 - \gluewidth / 2);
+        \path let \p1=(fancenter) in coordinate (fan_inner_nnw) at (\x1 - \gluewidth / 2, \y1 + \width / 2 - \gluewidth / 2);
         \path let \p1=(fancenter) in coordinate (fan_inner_nw) at (\x1 - \width / 2 + \gluewidth / 2, \y1 + \width / 2 - \gluewidth / 2);
+        \path let \p1=(fancenter) in coordinate (fan_inner_wnw) at (\x1 - \width / 2 + \gluewidth / 2, \y1 + \gluewidth / 2);
+        \path let \p1=(fancenter) in coordinate (fan_inner_wsw) at (\x1 - \width / 2 + \gluewidth / 2, \y1 - \gluewidth / 2);
         \path let \p1=(fancenter) in coordinate (fan_inner_sw) at (\x1 - \width / 2 + \gluewidth / 2, \y1 - \width / 2 + \gluewidth / 2);
+        \path let \p1=(fancenter) in coordinate (fan_inner_ssw) at (\x1 - \gluewidth / 2, \y1 - \width / 2 + \gluewidth / 2);
+        \path let \p1=(fancenter) in coordinate (fan_inner_sse) at (\x1 + \gluewidth / 2, \y1 - \width / 2 + \gluewidth / 2);
+        \path let \p1=(fancenter) in coordinate (fan_inner_se) at (\x1 + \width / 2 - \gluewidth / 2, \y1 - \width / 2 + \gluewidth / 2);
+        \path let \p1=(fancenter) in coordinate (fan_inner_ese) at (\x1 + \width / 2 - \gluewidth / 2, \y1 - \gluewidth / 2);
+        \path let \p1=(fancenter) in coordinate (fan_inner_ene) at (\x1 + \width / 2 - \gluewidth / 2, \y1 + \gluewidth / 2);
 
-        \draw[cut,rounded corners = \width / 4] (fan_inner_ne) -- (fan_inner_nw) -- (fan_inner_sw) -- (fan_inner_se) -- cycle;
+        % \draw[cut,rounded corners = \width / 4] (fan_inner_ne) -- (fan_inner_nw) -- (fan_inner_sw) -- (fan_inner_se) -- cycle;
+        \draw[cut,rounded corners = \width / 5] (fan_inner_ne) -- %(fan_inner_nne) -- (fancenter) -- (fan_inner_nnw) --
+        (fan_inner_nw) -- (fan_inner_wnw) -- (fancenter) -- (fan_inner_wsw) --
+        (fan_inner_sw) -- %(fan_inner_ssw) -- (fancenter) -- (fan_inner_sse) --
+        (fan_inner_se) -- (fan_inner_ese) -- (fancenter) -- (fan_inner_ene) --
+        cycle;
         
         \foreach \holecenterdistance in {\width * 0.5 - 7.5mm} { % TODO: Adjust/Test for non-120mm fans
           \foreach \xholeindex in {-1, 1} {
