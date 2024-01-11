@@ -32,14 +32,10 @@
     \draw[cut] (ne) -- (nw);
     \draw[cut] (nw) -- (sw);
     \draw[cut] (sw) -- (tooth1_nw);
-    \draw[cut] (tooth1_nw) -- (tooth1_sw);
-    \draw[cut] (tooth1_sw) -- (tooth1_se);
-    \draw[cut] (tooth1_se) -- (tooth1_ne);
+    \draw[cut, rounded corners=\toothheight / 2] (tooth1_nw) -- (tooth1_sw) -- (tooth1_se)  -- (tooth1_ne);
     \draw[cut] (tooth1_ne) -- (tooth2_nw);
 
-    \draw[cut] (tooth2_nw) -- (tooth2_sw);
-    \draw[cut] (tooth2_sw) -- (tooth2_se);
-    \draw[cut] (tooth2_se) -- (tooth2_ne);
+    \draw[cut, rounded corners=\toothheight / 2] (tooth2_nw) -- (tooth2_sw) -- (tooth2_se) -- (tooth2_ne);
     \draw[cut] (tooth2_ne) -- (se);
 
     \draw[cut] (se) -- (ne);
