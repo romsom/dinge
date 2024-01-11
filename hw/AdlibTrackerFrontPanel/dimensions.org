@@ -1,0 +1,43 @@
+* 5.25" CD-ROM Drive Dimensions
+Source: [[https://members.snia.org/document/dl/25931][SFF-8551]]
+
+#+NAME: CDROM_Dimensions
+| A 1 |  41.53 | 1.635 | * |
+| A 2 |  42.30 | 1.665 |   |
+| A 3 | 148.00 | 5.827 |   |
+| A 4 | 202.80 | 7.984 | * |
+| A 5 | 146.05 | 5.750 |   |
+| A 6 | 139.70 | 5.500 |   |
+| A 7 |   3.18 | 0.125 |   |
+| A 8 |  79.25 | 3.120 |   |
+| A 9 |  47.40 | 1.866 |   |
+| A10 |  47.40 | 1.866 |   |
+| A11 |  79.25 | 3.120 |   |
+| A13 |  10.00 | 0.394 |   |
+| A14 |  21.84 | 0.860 |   |
+| A16 |   6.50 | 0.256 |   |
+| A17 |   5.00 | 0.197 |   |
+
+** Export for OpenSCAD
+#+begin_src python :var data=CDROM_Dimensions
+  return '\n'.join([f"{l[0].replace(' ', '')} = {l[1]};" for l in data])
+#+end_src
+
+#+RESULTS:
+#+begin_example
+A1 = 41.53;
+A2 = 42.3;
+A3 = 148.0;
+A4 = 202.8;
+A5 = 146.05;
+A6 = 139.7;
+A7 = 3.18;
+A8 = 79.25;
+A9 = 47.4;
+A10 = 47.4;
+A11 = 79.25;
+A13 = 10.0;
+A14 = 21.84;
+A16 = 6.5;
+A17 = 5.0;
+#+end_example
