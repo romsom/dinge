@@ -34,10 +34,18 @@ module basic_panel() {
                 translate([-depth/2, (material - A5) / 2, A1/2]) cube([depth, material, A1], center=true);
             }
             // mounting holes
-            #union() {
+            union() {
                 for (x = [A10, A10+A11]) {
                     for (z = [A13, A14]) {
                         translate([-x, 0, z]) rotate([90,0,0]) cylinder(h=A6+(2*material)+1, d=mounting_hole_diameter, center=true);
+                    }
+                }
+            }
+
+            union() {
+                for (x = [A9, A9+A8]) {
+                    for (y = [-A6 / 2, A6 / 2]) {
+                        translate([-x, y, 0]) rotate([0,0,0]) cylinder(h=2*material+2, d=mounting_hole_diameter, center=true);
                     }
                 }
             }
