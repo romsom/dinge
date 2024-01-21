@@ -28,7 +28,7 @@ hole_diameter = 5.2;
 front_hole_distance = 30;
 rear_hole_distance = front_hole_distance + 51;
 
-front_cutout_y_end = front_hole_distance - 10;
+front_cutout_y_end = front_hole_distance - 8;
 front_cutout_z_end = bottom_height + 3;
 
 nut_position = 7;
