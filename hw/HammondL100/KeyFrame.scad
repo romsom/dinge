@@ -28,6 +28,9 @@ hole_diameter = 5.2;
 front_hole_distance = 30;
 rear_hole_distance = front_hole_distance + 51;
 
+front_cutout_y_end = front_hole_distance - 10;
+front_cutout_z_end = bottom_height + 3;
+
 nut_position = 7;
 
 //$fa = 1;
@@ -88,7 +91,7 @@ difference() {
             union() {
                 cylinder(h=frame_dimensions.z + 2, d=hole_diameter, center=true);
                 translate([0, 0, nut_position - frame_dimensions.z / 2])
-                    rotate(-30) m5_hex_nut_slot(10, false);
+                    rotate(30) m5_hex_nut_slot(10, false);
                 translate([0, 0, (frame_dimensions.z - top_height) / 2 + 1])
                     cylinder(h=top_height+2, d=shaft_clearance, center=true);
             }
@@ -97,7 +100,7 @@ difference() {
             union() {
                 cylinder(h=frame_dimensions.z + 2, d=hole_diameter, center=true);
                 translate([0, 0, nut_position - frame_dimensions.z / 2])
-                    rotate(-30) m5_hex_nut_slot(10, false);
+                    rotate(30) m5_hex_nut_slot(10, false);
                 translate([0, 0, (frame_dimensions.z - top_height) / 2 + 1])
                     cylinder(h=top_height+2, d=shaft_clearance, center=true);
             }
@@ -108,5 +111,7 @@ difference() {
         // felt
         translate([0, (felt_end - felt_start) / 2 + felt_start, (-frame_dimensions.z + felt_thickness - 1) / 2])
             cube([width + 2, felt_end - felt_start, felt_thickness + 1], center=true);
+        translate([0, front_cutout_y_end / 2 - 1, (-frame_dimensions.z + front_cutout_z_end) / 2 - 1])
+            cube([width + 2, front_cutout_y_end + 2, front_cutout_z_end + 2], center=true);
     }
 }
