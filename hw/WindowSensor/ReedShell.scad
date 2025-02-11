@@ -98,4 +98,6 @@ difference() {
     // pin header cutout
     pin_header_y = (-width / 2) + socket_depth + 1;
     pin_header_cutout(3, pin_header_y, wire_distance);
+    // third wire (dummy for connector)
+    translate([wire_distance / 2, pin_header_y - 0.5, 0]) rotate([90,0,0]) cylinder(h=holder_width + width_offset, d=wire_diameter, center=true);
 }
