@@ -41,10 +41,10 @@ module wire_bend(wire_diameter, bend_diameter, angle, start_angle) {
     translate([bend_diameter / 2, 0, 0]) circle(d = wire_diameter);
 }
 
-module socket_strip_cutout(n, depth) {
+module socket_strip_cutout(n, depth, overhang_compensation) {
     raster = 2.54;
     // height, width follow logically from raster
-    cube([n * raster, depth,raster], center=true);
+    cube([n * raster, depth,raster + overhang_compensation], center=true);
 }
 
 module wire_bend_cutout(wire_distance, wire_diameter) {
@@ -94,7 +94,7 @@ difference() {
     socket_depth = 8;
     // pin socket strip cutout
     translate([wire_distance / 2, -width / 2, 0])
-    socket_strip_cutout(3, 2 * socket_depth);
+    socket_strip_cutout(3, 2 * socket_depth, 0.3);
     // pin header cutout
     pin_header_y = (-width / 2) + socket_depth + 1;
     pin_header_cutout(3, pin_header_y, wire_distance);
